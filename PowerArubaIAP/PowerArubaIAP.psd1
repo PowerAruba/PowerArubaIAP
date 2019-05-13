@@ -9,10 +9,10 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-# RootModule = ''
+RootModule = 'PowerArubaIAP.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.1'
+ModuleVersion = '0.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -24,7 +24,7 @@ GUID = 'fbbbe132-9052-455f-9240-4c76f45b9140'
 Author = 'Alexis La Goutte'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+#CompanyName = 'Unknown'
 
 # Copyright statement for this module
 Copyright = '(c) Alexis La Goutte. All rights reserved.'
@@ -63,22 +63,22 @@ PowerShellVersion = '5.0'
 # TypesToProcess = @()
 
 # Format files (.ps1xml) to be loaded when importing this module
-FormatsToProcess = 'PowerArubaIAP.Format.ps1xml'
+#FormatsToProcess = 'PowerArubaIAP.Format.ps1xml'
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @()
+FunctionsToExport = '*'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = @()
+CmdletsToExport = '*'
 
 # Variables to export from this module
 VariablesToExport = '*'
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = @()
+AliasesToExport = '*'
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()
