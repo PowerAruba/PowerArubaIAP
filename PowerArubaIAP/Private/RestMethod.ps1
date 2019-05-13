@@ -49,10 +49,15 @@ ers
         $Server = ${DefaultArubaIAPConnection}.Server
         $headers = ${DefaultArubaIAPConnection}.headers
         $invokeParams = ${DefaultArubaIAPConnection}.invokeParams
+        $sid = ${DefaultArubaIAPConnection}.sid
 
-        $fullurl = "https://${Server}/${uri}"
-        if($fullurl -NotMatch "\?"){
+        $fullurl = "https://${Server}:4343/${uri}"
+        if ($fullurl -NotMatch "\?") {
             $fullurl += "?"
+        }
+
+        if ($sid) {
+            $fullurl += "&sid=$sid"
         }
 
         $sessionvariable = $DefaultArubaIAPConnection.session
