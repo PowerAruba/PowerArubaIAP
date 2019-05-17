@@ -38,7 +38,9 @@ ers
         [ValidateSet("GET", "PUT", "POST", "DELETE")]
         [String]$method = "get",
         [Parameter(Mandatory = $false)]
-        [psobject]$body
+        [psobject]$body,
+        [Parameter(Mandatory = $false)]
+        [ipaddress]$iap_ip_addr
     )
 
     Begin {
@@ -58,6 +60,10 @@ ers
 
         if ($sid) {
             $fullurl += "&sid=$sid"
+        }
+
+        if ($iap_ip_addr) {
+            $fullurl += "&iap_ip_addr=$iap_ip_addr"
         }
 
         $sessionvariable = $DefaultArubaIAPConnection.session
