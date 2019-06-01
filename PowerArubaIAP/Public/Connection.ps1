@@ -12,10 +12,16 @@ function Connect-ArubaIAP {
 
       .DESCRIPTION
       Connect to a Aruba Instant Access Point
+
       .EXAMPLE
       Connect-ArubaIAP -Server 192.0.2.1
 
       Connect to a Aruba Instant Access Point with IP 192.0.2.1 using (Get-)credential
+
+     .EXAMPLE
+      Connect-ArubaIAP -Server 192.0.2.1 -iap_ip_addr 192.0.2.2
+
+      Connect to a Aruba Instant Access Point with IP 192.0.2.1 and IAP IP (query AP) 192.0.2.2 using (Get-)credential
 
       .EXAMPLE
       Connect-ArubaIAP -Server 192.0.2.1 -SkipCertificateCheck
