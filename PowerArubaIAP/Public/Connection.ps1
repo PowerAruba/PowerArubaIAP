@@ -44,6 +44,8 @@ function Connect-ArubaIAP {
         [SecureString]$Password,
         [Parameter(Mandatory = $false)]
         [PSCredential]$Credentials,
+        [Parameter (Mandatory = $false)]
+        [ipaddress]$iap_ip_addr,
         [Parameter(Mandatory = $false)]
         [switch]$SkipCertificateCheck = $false
     )
@@ -54,7 +56,7 @@ function Connect-ArubaIAP {
     Process {
 
 
-        $connection = @{server = ""; session = ""; invokeParams = ""; sid = "" }
+        $connection = @{server = ""; session = ""; invokeParams = ""; sid = ""; iap_ip_addr = "" }
         $invokeParams = @{DisableKeepAlive = $false; UseBasicParsing = $true; SkipCertificateCheck = $SkipCertificateCheck }
 
         #If there is a password (and a user), create a credentials
@@ -108,6 +110,12 @@ function Connect-ArubaIAP {
         $connection.session = $arubaiap
         $connection.invokeParams = $invokeParams
         $connection.sid = $response.sid
+        if ($iap_ip_addr) {
+            $connection.iap_ip_addr = $iap_ip_addr
+        }
+        else {
+            $connection.iap_ip_addr = $server
+        }
 
         set-variable -name DefaultArubaIAPConnection -value $connection -scope Global
 
