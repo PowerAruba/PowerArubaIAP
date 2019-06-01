@@ -126,6 +126,50 @@ function Connect-ArubaIAP {
     }
 }
 
+function Set-ArubaIAPConnection {
+
+    <#
+        .SYNOPSIS
+        Configure Aruba IAP connection Setting
+
+        .DESCRIPTION
+        Configure Aruba IAP connection Setting (IAP IP Addres...)
+
+        .EXAMPLE
+        Set-ArubaIAPConnection -iap_ip_addr 192.0.2.2
+
+        Configure IAP IP Address to 192.0.2.2
+
+        .EXAMPLE
+        Set-ArubaIAPConnection -iap_ip_addr $null
+
+        Restore IAP IP Addr configuration to default (by default IP Server)
+    #>
+
+    Param(
+        [Parameter(Mandatory = $false)]
+        [ipaddress]$iap_ip_addr
+    )
+
+    Begin {
+    }
+
+    Process {
+
+        if ( $PsBoundParameters.ContainsKey('iap_ip_addr') ) {
+            if ($null -eq $iap_ip_addr) {
+                $DefaultArubaIAPConnection.iap_ip_addr = $DefaultArubaIAPConnection.server
+            }
+            else {
+                $DefaultArubaIAPConnection.iap_ip_addr = $iap_ip_addr
+            }
+        }
+
+    }
+
+    End {
+    }
+}
 function Disconnect-ArubaIAP {
 
     <#
