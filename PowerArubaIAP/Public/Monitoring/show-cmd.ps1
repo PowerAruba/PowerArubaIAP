@@ -31,7 +31,7 @@ function Get-ArubaIAPShowCmd {
     Param(
         [Parameter (Mandatory = $true, Position = 1)]
         [string]$cmd,
-        [Parameter (Mandatory = $true)]
+        [Parameter (Mandatory = $false)]
         [ipaddress]$iap_ip_addr,
         [Parameter (Mandatory = $false)]
         [switch]$display_result
@@ -43,7 +43,10 @@ function Get-ArubaIAPShowCmd {
     Process {
 
         $invokeParams = @{ }
-        $invokeParams.add( 'iap_ip_addr', $iap_ip_addr )
+
+        if ($iap_ip_addr) {
+            $invokeParams.add( 'iap_ip_addr', $iap_ip_addr )
+        }
 
         #Replace space by %20
         $cmd = $cmd -replace ' ', '%20'
