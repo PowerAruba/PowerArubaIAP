@@ -221,7 +221,7 @@ function Disconnect-ArubaIAP {
         else { $decision = 0 }
         if ($decision -eq 0) {
             Write-Progress -activity "Remove Aruba Instant Access Point connection"
-            Invoke-ArubaIAPRestMethod -method "POST" -uri $url | Out-Null
+            Invoke-ArubaIAPRestMethod -method "Get" -uri $url | Out-Null
             Write-Progress -activity "Remove Aruba Instant Access Point connection" -completed
             if (Get-Variable -Name DefaultArubaIAPConnection -scope global) {
                 Remove-Variable -name DefaultArubaIAPConnection -scope global
