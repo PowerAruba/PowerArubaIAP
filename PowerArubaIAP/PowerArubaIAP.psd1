@@ -95,13 +95,13 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+         Tags = @('Aruba', 'HPE', 'IAP', 'Instant', 'Access Point', 'WiFi', 'PSEdition_Core','PSEdition_Desktop')
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+         LicenseUri = 'https://github.com/PowerAruba/PowerArubaIAP/blob/master/LICENSE'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+         ProjectUri = 'https://github.com/PowerAruba/PowerArubaIAP'
 
         # A URL to an icon representing this module.
         # IconUri = ''
