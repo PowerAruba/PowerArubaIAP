@@ -134,8 +134,8 @@ Connect-ArubaIAP
 Disconnect-ArubaIAP
 Get-ArubaIAPShowCmd
 Invoke-ArubaIAPRestMethod
-Set-ArubaCXCipherSSL
-Set-ArubaCXuntrustedSSL
+Set-ArubaIAPCipherSSL
+Set-ArubaIAPuntrustedSSL
 Set-ArubaIAPConnection
 Show-ArubaIAPException
 ```
