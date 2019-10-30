@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-Function Set-ArubaCXuntrustedSSL {
+Function Set-ArubaIAPuntrustedSSL {
 
   # Hack for allowing untrusted SSL certs with https connexions
   Add-Type -TypeDefinition @"
@@ -22,7 +22,7 @@ Function Set-ArubaCXuntrustedSSL {
 
 }
 
-Function Set-ArubaCXCipherSSL {
+Function Set-ArubaIAPCipherSSL {
 
   # Hack for allowing TLS 1.1 and TLS 1.2 (by default it is only SSL3 and TLS (1.0))
   $AllProtocols = [System.Net.SecurityProtocolType]'Ssl3,Tls,Tls11,Tls12'
