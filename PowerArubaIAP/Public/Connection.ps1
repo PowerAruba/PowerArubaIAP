@@ -77,6 +77,8 @@ function Connect-ArubaIAP {
         if ("Desktop" -eq $PSVersionTable.PsEdition) {
             #Remove -SkipCertificateCheck from Invoke Parameter (not supported <= PS 5)
             $invokeParams.remove("SkipCertificateCheck")
+            #Enable UseUnsafeParsingHeader for fix protocol violation when use PS5 (See Bug #2)
+            Set-UseUnsafeHeaderParsing -Enable
         }
         else {
             #Core Edition
@@ -222,6 +224,10 @@ function Disconnect-ArubaIAP {
         if ($decision -eq 0) {
             Write-Progress -activity "Remove Aruba Instant Access Point connection"
             Invoke-ArubaIAPRestMethod -method "Get" -uri $url | Out-Null
+            if ("Desktop" -eq $PSVersionTable.PsEdition) {
+                #Disable UseUnsafeParsingHeader (See Bug #2)
+                Set-UseUnsafeHeaderParsing -Disable
+            }
             Write-Progress -activity "Remove Aruba Instant Access Point connection" -completed
             if (Get-Variable -Name DefaultArubaIAPConnection -scope global) {
                 Remove-Variable -name DefaultArubaIAPConnection -scope global
