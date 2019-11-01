@@ -51,8 +51,9 @@ function Invoke-ArubaIAPRestMethod {
         $headers = ${DefaultArubaIAPConnection}.headers
         $invokeParams = ${DefaultArubaIAPConnection}.invokeParams
         $sid = ${DefaultArubaIAPConnection}.sid
+        $port = ${DefaultArubaIAPConnection}.port
 
-        $fullurl = "https://${Server}:4343/${uri}"
+        $fullurl = "https://${Server}:${port}/${uri}"
         if ($fullurl -NotMatch "\?") {
             $fullurl += "?"
         }
