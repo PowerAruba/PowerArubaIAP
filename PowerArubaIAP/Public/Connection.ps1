@@ -102,7 +102,7 @@ function Connect-ArubaIAP {
         $headers = @{ Accept = "application/json"; "Content-type" = "application/json" }
 
         try {
-            $response = Invoke-RestMethod $url -Method POST -Body ($postParams | ConvertTo-Json) -SessionVariable arubaiap -headers $headers  @invokeParams
+            $response = Invoke-RestMethod $url -Method POST -Body ($postParams | ConvertTo-Json) -SessionVariable arubaiap -headers $headers @invokeParams
         }
         catch {
             Show-ArubaIAPException $_
@@ -141,7 +141,7 @@ function Set-ArubaIAPConnection {
         Configure Aruba IAP connection Setting
 
         .DESCRIPTION
-        Configure Aruba IAP connection Setting (IAP IP Addres...)
+        Configure Aruba IAP connection Setting (IAP IP Address...)
 
         .EXAMPLE
         Set-ArubaIAPConnection -iap_ip_addr 192.0.2.2
