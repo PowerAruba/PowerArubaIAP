@@ -29,6 +29,11 @@ function Connect-ArubaIAP {
       Connect to an Aruba Instant Access Point using HTTPS (without check certificate validation) with IP 192.0.2.1 using (Get-)credential
 
       .EXAMPLE
+      Connect-ArubaIAP -Server 192.0.2.1 -port 4443
+
+        Connect to an Aruba Instant Access Point with port 4443 with IP 192.0.2.1 using (Get-)credential
+
+      .EXAMPLE
       $cred = get-credential
       PS C:\>Connect-ArubaIAP -Server 192.0.2.1 -credential $cred
 
@@ -53,7 +58,10 @@ function Connect-ArubaIAP {
         [Parameter (Mandatory = $false)]
         [ipaddress]$iap_ip_addr,
         [Parameter(Mandatory = $false)]
-        [switch]$SkipCertificateCheck = $false
+        [switch]$SkipCertificateCheck = $false,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(1, 65535)]
+        [int]$port=4343
     )
 
     Begin {
@@ -62,7 +70,7 @@ function Connect-ArubaIAP {
     Process {
 
 
-        $connection = @{server = ""; session = ""; invokeParams = ""; sid = ""; iap_ip_addr = "" }
+        $connection = @{server = ""; session = ""; invokeParams = ""; sid = ""; iap_ip_addr = ""; port = $port }
         $invokeParams = @{DisableKeepAlive = $false; UseBasicParsing = $true; SkipCertificateCheck = $SkipCertificateCheck }
 
         #If there is a password (and a user), create a credentials
@@ -98,7 +106,7 @@ function Connect-ArubaIAP {
 
         $postParams = @{user = $Credentials.username; passwd = $Credentials.GetNetworkCredential().Password }
 
-        $url = "https://${Server}:4343/rest/login"
+        $url = "https://${Server}:${port}/rest/login"
         $headers = @{ Accept = "application/json"; "Content-type" = "application/json" }
 
         try {
