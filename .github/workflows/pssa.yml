@@ -8,4 +8,5 @@ jobs:
     - uses: actions/checkout@v1
     - name: lint
       uses: devblackops/github-action-psscriptanalyzer@master
+      with:
         settingsPath: .vscode/PSScriptAnalyzerSettings.psd1
