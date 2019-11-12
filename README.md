@@ -134,9 +134,17 @@ Connect-ArubaIAP
 Disconnect-ArubaIAP
 Get-ArubaIAPShowCmd
 Invoke-ArubaIAPRestMethod
+Remove-ArubaIAPZone
+Set-ArubaIAPAntennaGain
+Set-ArubaIAPChannelPower
 Set-ArubaIAPCipherSSL
-Set-ArubaIAPuntrustedSSL
 Set-ArubaIAPConnection
+Set-ArubaIAPHostname
+Set-ArubaIAPRadioState
+Set-ArubaIAPSwarmMode
+Set-ArubaIAPuntrustedSSL
+Set-ArubaIAPZone
+Set-UseUnsafeHeaderParsing
 Show-ArubaIAPException
 ```
 
