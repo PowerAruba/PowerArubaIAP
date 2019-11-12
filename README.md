@@ -57,7 +57,9 @@ The first thing to do is to connect to a Aruba Instant AP with the command `Conn
 if you get a warning about `Unable to connect` Look [Issue](#Issue)
 
 
-### Show command
+### Monitoring
+
+#### Show command
 
 You can display some command... (CLi to API)
 
@@ -98,6 +100,54 @@ You can display some command... (CLi to API)
     WPA3          WPA3       0        employee  all   None                   WPA3_SAE        Default VLAN   Disabled  -     Default  No
 [...]
 
+```
+### Action
+For each action, you can use -iap_ip_addr for configure an IAP of cluster (using IP Address)
+
+#### Hostname
+
+```powershell
+# Configure IAP (Host)Name
+    Add-ArubaIAPHostname MyIAP
+```
+
+#### Radio State
+
+```powershell
+# For enable Radio (5Ghz and 2,4Ghz)
+    Add-ArubaIAPRadioState -dot11a -dot11g
+
+# For disable Radio
+    Remove-ArubaIAPRadioState  -dot11a:$flase -dot11g:$false
+```
+
+#### Channel and Power
+
+```powershell
+# for configure manually channel and Power for 802.11a (5Ghz) and 802.11g (2,4Ghz)
+    Add-ArubaIAPChannelPower -apower 10 -achannel 36 -gpower 15 -g-channel 1
+
+```
+
+
+#### Swarm Mode
+
+```powershell
+# Use Standalone Mode
+    Set-ArubaIAPSwarmmode Standalone
+
+# Use Cluster Mode (default)
+    Set-ArubaIAPSwarmmode Cluster
+```
+
+#### Zone
+
+```powershell
+# Add IAP to a Zone
+    Add-ArubaIAPZone MyZone
+
+# Remove all zone of IAP
+    Remove-ArubaIAPZone
 ```
 
 
