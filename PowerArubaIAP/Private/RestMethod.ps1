@@ -29,7 +29,7 @@ function Invoke-ArubaIAPRestMethod {
       Invoke-RestMethod with ArubaIAP connection for post rest/v1/rest/virtual-controller-ip uri with $body payloaders
     #>
 
-    [CmdletBinding(DefaultParametersetname="default")]
+    [CmdletBinding(DefaultParametersetname = "default")]
     Param(
         [Parameter(Mandatory = $true, position = 1)]
         [String]$uri,
@@ -46,6 +46,10 @@ function Invoke-ArubaIAPRestMethod {
     }
 
     Process {
+
+        if ($null -eq $DefaultArubaIAPConnection) {
+            Throw "Not Connected. Connect to the Aruba Instant AP with Connect-ArubaIAP"
+        }
 
         $Server = ${DefaultArubaIAPConnection}.Server
         $headers = ${DefaultArubaIAPConnection}.headers
