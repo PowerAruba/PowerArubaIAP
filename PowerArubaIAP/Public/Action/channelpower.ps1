@@ -69,7 +69,6 @@ function Set-ArubaIAPChannelPower {
             "iap_ip_addr" = $iap_ip_addr.ToString()
             "channel"     = $channel
         }
-        $body | ConvertTo-Json
 
         $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
 
