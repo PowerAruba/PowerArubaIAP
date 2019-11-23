@@ -108,24 +108,24 @@ For each action, you can use -iap_ip_addr for configure an IAP of cluster (using
 
 ```powershell
 # Configure IAP (Host)Name
-    Add-ArubaIAPHostname MyIAP
+    Set-ArubaIAPHostname MyIAP
 ```
 
 #### Radio State
 
 ```powershell
 # For enable Radio (5Ghz and 2,4Ghz)
-    Add-ArubaIAPRadioState -dot11a -dot11g
+    Set-ArubaIAPRadioState -dot11a -dot11g
 
 # For disable Radio
-    Remove-ArubaIAPRadioState  -dot11a:$flase -dot11g:$false
+    Set-ArubaIAPRadioState  -dot11a:$false -dot11g:$false
 ```
 
 #### Channel and Power
 
 ```powershell
 # for configure manually channel and Power for 802.11a (5Ghz) and 802.11g (2,4Ghz)
-    Add-ArubaIAPChannelPower -apower 10 -achannel 36 -gpower 15 -g-channel 1
+    Set-ArubaIAPChannelPower -apower 10 -achannel 36 -gpower 15 -g-channel 1
 
 ```
 
