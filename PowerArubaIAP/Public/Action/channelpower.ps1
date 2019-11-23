@@ -17,12 +17,12 @@ function Set-ArubaIAPChannelPower {
         .EXAMPLE
         Set-ArubaIAPChannelPower -achannel 44 -apower 10 -gchannel 1 -gpower 5
 
-        Set 802.11a (5Ghz) Power to 10 (dBm),Channel to 44 and 802.11g (2,4Ghz) Power to 5 (dBm), Channel to 1 on IAP
+        Set 802.11a (5Ghz) Power to 10 (dBm), Channel to 44 and 802.11g (2,4Ghz) Power to 5 (dBm), Channel to 1 on IAP
 
         .EXAMPLE
         Set-ArubaIAPChannelPower -achannel 100 -apower -5 -gchannel 6 -gpower 20 -iap_ip_addr 192.0.2.2
 
-        Set 802.11a (5Ghz) Power to -5 (dBm),Channel to 100 and 802.11g (2,4Ghz) Power to 20 (dBm), Channel to 6 on IAP with address IP 192.0.2.2
+        Set 802.11a (5Ghz) Power to -5 (dBm), Channel to 100 and 802.11g (2,4Ghz) Power to 20 (dBm), Channel to 6 on IAP with address IP 192.0.2.2
 
     #>
 
