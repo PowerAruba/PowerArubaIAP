@@ -3,7 +3,7 @@
 
 This is a Powershell module for configure a Aruba Instant AP (IAP)
 
-With this module (version 0.1.1) you can manage:
+With this module (version 0.2.0) you can manage:
 
 - Show commands
 
