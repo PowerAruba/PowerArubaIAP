@@ -16,12 +16,12 @@ function Set-ArubaIAPAntennaGain {
         .EXAMPLE
         Set-ArubaIAPAntennaGain -aexternalantenna "14 Panel" -gexternalantenna "12 Sector"
 
-        Set a external Antenna and g external Antenna on IAP
+        Configure a-external Antenna and g-external Antenna on IAP
 
         .EXAMPLE
         Set-ArubaIAPAntennaGain -aexternalantenna "14 Panel" -gexternalantenna "12 Sector" -iap_ip_addr 192.0.2.2
 
-        Set a external Antenna and g external Antennae on IAP with address IP 192.0.2.2
+        Configure a-external Antenna and g-external Antenna on IAP with address IP 192.0.2.2
     #>
 
     Param(
