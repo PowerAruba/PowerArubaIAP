@@ -119,7 +119,7 @@ For each action, you can use -iap_ip_addr for configure an IAP of cluster (using
     Set-ArubaIAPRadioState -dot11a -dot11g
 
 # For disable Radio
-    Set-ArubaIAPRadioState  -dot11a:$false -dot11g:$false
+    Set-ArubaIAPRadioState -dot11a:$false -dot11g:$false
 ```
 
 #### Channel and Power
