@@ -61,7 +61,7 @@ function Connect-ArubaIAP {
         [switch]$SkipCertificateCheck = $false,
         [Parameter(Mandatory = $false)]
         [ValidateRange(1, 65535)]
-        [int]$port=4343
+        [int]$port = 4343
     )
 
     Begin {
@@ -162,6 +162,7 @@ function Set-ArubaIAPConnection {
         Restore IAP IP Addr configuration to default (by default IP Server)
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     Param(
         [Parameter(Mandatory = $false)]
         [ipaddress]$iap_ip_addr
@@ -172,12 +173,14 @@ function Set-ArubaIAPConnection {
 
     Process {
 
-        if ( $PsBoundParameters.ContainsKey('iap_ip_addr') ) {
-            if ($null -eq $iap_ip_addr) {
-                $DefaultArubaIAPConnection.iap_ip_addr = $DefaultArubaIAPConnection.server
-            }
-            else {
-                $DefaultArubaIAPConnection.iap_ip_addr = $iap_ip_addr
+        if ($PSCmdlet.ShouldProcess($connection.server, 'Set default iap_ip_addr on connection')) {
+            if ( $PsBoundParameters.ContainsKey('iap_ip_addr') ) {
+                if ($null -eq $iap_ip_addr) {
+                    $DefaultArubaIAPConnection.iap_ip_addr = $DefaultArubaIAPConnection.server
+                }
+                else {
+                    $DefaultArubaIAPConnection.iap_ip_addr = $iap_ip_addr
+                }
             }
         }
 
