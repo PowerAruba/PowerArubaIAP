@@ -24,6 +24,7 @@ function Set-ArubaIAPHostname {
         Set PowerArubaIAP-AP2 hostname on IAP with address IP 192.0.2.2
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     Param(
         [Parameter (Mandatory = $true, Position = 1)]
         [string]$hostname,
@@ -48,9 +49,12 @@ function Set-ArubaIAPHostname {
             "hostname_info" = $hostname_info
         }
 
-        $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
+        if ($PSCmdlet.ShouldProcess($iap_ip_addr, 'Set Hostname')) {
+            $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
 
-        $response
+            $response
+        }
+
     }
 
     End {
