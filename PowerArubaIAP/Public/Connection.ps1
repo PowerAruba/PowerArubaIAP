@@ -204,15 +204,14 @@ function Disconnect-ArubaIAP {
         Disconnect the connection
 
         .EXAMPLE
-        Disconnect-ArubaIAP -noconfirm
+        Disconnect-ArubaIAP -confirm:$false
 
         Disconnect the connection with no confirmation
 
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     Param(
-        [Parameter(Mandatory = $false)]
-        [switch]$noconfirm
     )
 
     Begin {
@@ -222,24 +221,12 @@ function Disconnect-ArubaIAP {
 
         $url = "rest/logout"
 
-        if ( -not ( $Noconfirm )) {
-            $message = "Remove Aruba Instant Access Point connection."
-            $question = "Proceed with removal of Aruba Instant Access Point connection ?"
-            $choices = New-Object Collections.ObjectModel.Collection[Management.Automation.Host.ChoiceDescription]
-            $choices.Add((New-Object Management.Automation.Host.ChoiceDescription -ArgumentList '&Yes'))
-            $choices.Add((New-Object Management.Automation.Host.ChoiceDescription -ArgumentList '&No'))
-
-            $decision = $Host.UI.PromptForChoice($message, $question, $choices, 1)
-        }
-        else { $decision = 0 }
-        if ($decision -eq 0) {
-            Write-Progress -activity "Remove Aruba Instant Access Point connection"
+        if ($PSCmdlet.ShouldProcess($connection.server, 'Proceed with removal of Aruba Instant Access Point connection ?')) {
             Invoke-ArubaIAPRestMethod -method "Get" -uri $url | Out-Null
             if ("Desktop" -eq $PSVersionTable.PsEdition) {
                 #Disable UseUnsafeParsingHeader (See Bug #2)
                 Set-UseUnsafeHeaderParsing -Disable
             }
-            Write-Progress -activity "Remove Aruba Instant Access Point connection" -completed
             if (Get-Variable -Name DefaultArubaIAPConnection -scope global) {
                 Remove-Variable -name DefaultArubaIAPConnection -scope global
             }
