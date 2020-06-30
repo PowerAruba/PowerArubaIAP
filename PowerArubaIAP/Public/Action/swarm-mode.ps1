@@ -25,6 +25,7 @@ function Set-ArubaIAPSwarmMode {
         Set mode standalone on the IAP  with address IP 192.0.2.2
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     Param(
         [Parameter (Mandatory = $true, Position = 1)]
         [ValidateSet('Cluster', 'standalone')]
@@ -50,9 +51,11 @@ function Set-ArubaIAPSwarmMode {
             "swarm-mode"  = $swarmmode_info
         }
 
-        $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
+        if ($PSCmdlet.ShouldProcess($iap_ip_addr, 'Set Swarm Mode')) {
+            $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
 
-        $response
+            $response
+        }
     }
 
     End {
