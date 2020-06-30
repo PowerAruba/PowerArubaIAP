@@ -31,6 +31,7 @@ function Set-ArubaIAPZone {
         Set PowerArubaIAP-Zone2 zone on IAP with address IP 192.0.2.2
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     Param(
         [Parameter (Mandatory = $true, Position = 1)]
         [string]$zone,
@@ -56,9 +57,11 @@ function Set-ArubaIAPZone {
             "zone_info"   = $zone_info
         }
 
-        $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
+        if ($PSCmdlet.ShouldProcess($iap_ip_addr, 'Set Zone')) {
+            $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
 
-        $response
+            $response
+        }
     }
 
     End {
@@ -85,6 +88,7 @@ function Remove-ArubaIAPZone {
         Remove zone on IAP with address IP 192.0.2.2
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'high')]
     Param(
         [Parameter (Mandatory = $false)]
         [ipaddress]$iap_ip_addr = ${DefaultArubaIAPConnection}.iap_ip_addr
@@ -107,9 +111,11 @@ function Remove-ArubaIAPZone {
             "zone_info"   = $zone_info
         }
 
-        $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
+        if ($PSCmdlet.ShouldProcess($iap_ip_addr, 'Remove Zone')) {
+            $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
 
-        $response
+            $response
+        }
     }
 
     End {
