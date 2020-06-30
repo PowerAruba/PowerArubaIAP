@@ -83,7 +83,7 @@ function Remove-ArubaIAPZone {
         Remove Zone PowerArubaIAP-Zone1 to IAP
 
         .EXAMPLE
-        Remove-ArubaIAPZone  -iap_ip_addr 192.0.2.2
+        Remove-ArubaIAPZone -iap_ip_addr 192.0.2.2
 
         Remove zone on IAP with address IP 192.0.2.2
     #>
