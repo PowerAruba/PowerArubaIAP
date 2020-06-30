@@ -221,7 +221,7 @@ function Disconnect-ArubaIAP {
 
         $url = "rest/logout"
 
-        if ($PSCmdlet.ShouldProcess($connection.server, 'Proceed with removal of Aruba Instant Access Point connection ?')) {
+        if ($PSCmdlet.ShouldProcess($DefaultArubaIAPConnection.server, 'Proceed with removal of Aruba Instant Access Point connection ?')) {
             Invoke-ArubaIAPRestMethod -method "Get" -uri $url | Out-Null
             if ("Desktop" -eq $PSVersionTable.PsEdition) {
                 #Disable UseUnsafeParsingHeader (See Bug #2)
