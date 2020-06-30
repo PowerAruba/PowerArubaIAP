@@ -24,6 +24,7 @@ function Set-ArubaIAPRadioState {
         Disable dot11a and dot11g on IAP with address IP 192.0.2.2
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     Param(
         [Parameter (Mandatory = $true)]
         [switch]$dot11a,
@@ -64,9 +65,11 @@ function Set-ArubaIAPRadioState {
             "radio_state" = $radio_state
         }
 
-        $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
+        if ($PSCmdlet.ShouldProcess($iap_ip_addr, 'Set Radio State')) {
+            $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
 
-        $response
+            $response
+        }
     }
 
     End {
