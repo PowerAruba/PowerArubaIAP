@@ -31,7 +31,7 @@ function Connect-ArubaIAP {
       .EXAMPLE
       Connect-ArubaIAP -Server 192.0.2.1 -port 4443
 
-        Connect to an Aruba Instant Access Point with port 4443 with IP 192.0.2.1 using (Get-)credential
+      Connect to an Aruba Instant Access Point with port 4443 with IP 192.0.2.1 using (Get-)credential
 
       .EXAMPLE
       $cred = get-credential
