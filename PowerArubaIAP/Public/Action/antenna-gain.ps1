@@ -24,6 +24,7 @@ function Set-ArubaIAPAntennaGain {
         Configure a-external Antenna and g-external Antenna on IAP with address IP 192.0.2.2
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     Param(
         [Parameter (Mandatory = $true)]
         [string]$aexternalantenna,
@@ -51,9 +52,11 @@ function Set-ArubaIAPAntennaGain {
             "antenna_gain_info" = $antenna_gain_info
         }
 
-        $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
+        if ($PSCmdlet.ShouldProcess($iap_ip_addr, 'Set antenna gain')) {
+            $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
 
-        $response
+            $response
+        }
     }
 
     End {
