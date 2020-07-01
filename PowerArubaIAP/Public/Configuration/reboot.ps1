@@ -45,8 +45,8 @@ function Restart-ArubaIAPReboot {
         }
 
         $body = @{
-            "iap_ip_addr"   = $iap_ip_addr.ToString()
-            "reboot-info"   = $reboot_info
+            "iap_ip_addr" = $iap_ip_addr.ToString()
+            "reboot-info" = $reboot_info
         }
 
         $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
