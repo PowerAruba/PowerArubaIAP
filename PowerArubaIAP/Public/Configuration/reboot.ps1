@@ -22,8 +22,14 @@ function Restart-ArubaIAPReboot {
         Restart-ArubaIAPHostname -target single -iap_ip_addr 192.0.2.1
 
         Launch only the reboot of IAP with IP Address 192.0.2.1
+
+        .EXAMPLE
+        Restart-ArubaIAPReboot all -confirm:$flase
+
+        Reboot ALL IAP of the cluster without confirmation
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'high')]
     Param(
         [Parameter (Mandatory = $true, Position = 1)]
         [ValidateSet('all', 'single', IgnoreCase = $false)]
@@ -49,9 +55,11 @@ function Restart-ArubaIAPReboot {
             "reboot-info" = $reboot_info
         }
 
-        $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
+        if ($PSCmdlet.ShouldProcess($iap_ip_addr, 'Restart IAP')) {
+            $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
 
-        $response
+            $response
+        }
     }
 
     End {
