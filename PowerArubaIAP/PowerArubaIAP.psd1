@@ -104,7 +104,7 @@ PrivateData = @{
          ProjectUri = 'https://github.com/PowerAruba/PowerArubaIAP'
 
         # A URL to an icon representing this module.
-        # IconUri = ''
+        IconUri = 'https://raw.githubusercontent.com/PowerAruba/PowerArubaIAP/master/Medias/PowerArubaIAP.png'
 
         # ReleaseNotes of this module
         # ReleaseNotes = ''
