@@ -57,3 +57,57 @@ function Set-ArubaIAPCountryCode {
     End {
     }
 }
+
+function Remove-ArubaIAPCountryCode {
+
+    <#
+        .SYNOPSIS
+        Remove the Country Code to Aruba Instant AP Cluster
+
+        .DESCRIPTION
+        Remove the Country Code to Aruba Instant AP Cluster
+
+        .EXAMPLE
+        Remove-ArubaIAPCountryCode
+
+        Remove Country Code
+
+        .EXAMPLE
+        Remove-ArubaIAPCountryCode -confirm:$false
+
+        Remove Country Code without confirmation
+    #>
+
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'high')]
+    Param(
+        [Parameter (Mandatory = $false)]
+        [ipaddress]$iap_ip_addr = ${DefaultArubaIAPConnection}.iap_ip_addr
+    )
+
+    Begin {
+    }
+
+    Process {
+
+        $uri = "rest/country-code"
+
+
+        $country_code_info = @{
+            "action" = "delete"
+        }
+
+        $body = @{
+            "iap_ip_addr" = $iap_ip_addr.ToString()
+            "country_code_info"   = $country_code_info
+        }
+
+        if ($PSCmdlet.ShouldProcess($iap_ip_addr, 'Remove Country Code')) {
+            $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
+
+            $response
+        }
+    }
+
+    End {
+    }
+}
