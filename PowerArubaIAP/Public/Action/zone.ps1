@@ -86,6 +86,11 @@ function Remove-ArubaIAPZone {
         Remove-ArubaIAPZone -iap_ip_addr 192.0.2.2
 
         Remove zone on IAP with address IP 192.0.2.2
+
+        .EXAMPLE
+        Remove-ArubaIAPZone -confirm:$false
+
+        Remove Zone to IAP without confirmation
     #>
 
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'high')]
