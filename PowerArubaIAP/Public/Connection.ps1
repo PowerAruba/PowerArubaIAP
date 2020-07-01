@@ -31,7 +31,7 @@ function Connect-ArubaIAP {
       .EXAMPLE
       Connect-ArubaIAP -Server 192.0.2.1 -port 4443
 
-        Connect to an Aruba Instant Access Point with port 4443 with IP 192.0.2.1 using (Get-)credential
+      Connect to an Aruba Instant Access Point with port 4443 with IP 192.0.2.1 using (Get-)credential
 
       .EXAMPLE
       $cred = get-credential
@@ -61,7 +61,7 @@ function Connect-ArubaIAP {
         [switch]$SkipCertificateCheck = $false,
         [Parameter(Mandatory = $false)]
         [ValidateRange(1, 65535)]
-        [int]$port=4343
+        [int]$port = 4343
     )
 
     Begin {
@@ -162,6 +162,7 @@ function Set-ArubaIAPConnection {
         Restore IAP IP Addr configuration to default (by default IP Server)
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     Param(
         [Parameter(Mandatory = $false)]
         [ipaddress]$iap_ip_addr
@@ -172,12 +173,14 @@ function Set-ArubaIAPConnection {
 
     Process {
 
-        if ( $PsBoundParameters.ContainsKey('iap_ip_addr') ) {
-            if ($null -eq $iap_ip_addr) {
-                $DefaultArubaIAPConnection.iap_ip_addr = $DefaultArubaIAPConnection.server
-            }
-            else {
-                $DefaultArubaIAPConnection.iap_ip_addr = $iap_ip_addr
+        if ($PSCmdlet.ShouldProcess($connection.server, 'Set default iap_ip_addr on connection')) {
+            if ( $PsBoundParameters.ContainsKey('iap_ip_addr') ) {
+                if ($null -eq $iap_ip_addr) {
+                    $DefaultArubaIAPConnection.iap_ip_addr = $DefaultArubaIAPConnection.server
+                }
+                else {
+                    $DefaultArubaIAPConnection.iap_ip_addr = $iap_ip_addr
+                }
             }
         }
 
@@ -201,15 +204,14 @@ function Disconnect-ArubaIAP {
         Disconnect the connection
 
         .EXAMPLE
-        Disconnect-ArubaIAP -noconfirm
+        Disconnect-ArubaIAP -confirm:$false
 
         Disconnect the connection with no confirmation
 
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     Param(
-        [Parameter(Mandatory = $false)]
-        [switch]$noconfirm
     )
 
     Begin {
@@ -219,24 +221,12 @@ function Disconnect-ArubaIAP {
 
         $url = "rest/logout"
 
-        if ( -not ( $Noconfirm )) {
-            $message = "Remove Aruba Instant Access Point connection."
-            $question = "Proceed with removal of Aruba Instant Access Point connection ?"
-            $choices = New-Object Collections.ObjectModel.Collection[Management.Automation.Host.ChoiceDescription]
-            $choices.Add((New-Object Management.Automation.Host.ChoiceDescription -ArgumentList '&Yes'))
-            $choices.Add((New-Object Management.Automation.Host.ChoiceDescription -ArgumentList '&No'))
-
-            $decision = $Host.UI.PromptForChoice($message, $question, $choices, 1)
-        }
-        else { $decision = 0 }
-        if ($decision -eq 0) {
-            Write-Progress -activity "Remove Aruba Instant Access Point connection"
+        if ($PSCmdlet.ShouldProcess($DefaultArubaIAPConnection.server, 'Proceed with removal of Aruba Instant Access Point connection ?')) {
             Invoke-ArubaIAPRestMethod -method "Get" -uri $url | Out-Null
             if ("Desktop" -eq $PSVersionTable.PsEdition) {
                 #Disable UseUnsafeParsingHeader (See Bug #2)
                 Set-UseUnsafeHeaderParsing -Disable
             }
-            Write-Progress -activity "Remove Aruba Instant Access Point connection" -completed
             if (Get-Variable -Name DefaultArubaIAPConnection -scope global) {
                 Remove-Variable -name DefaultArubaIAPConnection -scope global
             }

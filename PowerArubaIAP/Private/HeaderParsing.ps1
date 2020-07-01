@@ -9,6 +9,8 @@
 # https://social.technet.microsoft.com/Forums/security/en-US/8ca2eb90-63fe-4f60-9f00-344fc321383b/simple-invokewebrequest-produces-protocol-violation-when-attempting-to-xml-login-to-a-web-based?forum=winserverpowershell
 
 function Set-UseUnsafeHeaderParsing {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessforStateChangingFunctions", "")]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSReviewUnusedParameter", "")]
     param(
         [Parameter(Mandatory, ParameterSetName = 'Enable')]
         [switch]$Enable,

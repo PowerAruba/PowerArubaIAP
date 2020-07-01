@@ -26,6 +26,7 @@ function Set-ArubaIAPChannelPower {
 
     #>
 
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     Param(
         [Parameter (Mandatory = $true)]
         [ValidateSet(36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 149, 153, 157, 161, 165,
@@ -70,9 +71,11 @@ function Set-ArubaIAPChannelPower {
             "channel"     = $channel
         }
 
-        $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
+        if ($PSCmdlet.ShouldProcess($iap_ip_addr, 'Set Channel and Power')) {
+            $response = Invoke-ArubaIAPRestMethod -uri $uri -body $body -method 'POST'
 
-        $response
+            $response
+        }
     }
 
     End {
