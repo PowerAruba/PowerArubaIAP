@@ -27,7 +27,9 @@ function Set-ArubaIAPCountryCode {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'high')]
     Param(
         [Parameter (Mandatory = $true, Position = 1)]
-        [string]$country_code
+        [string]$country_code,
+        [Parameter (Mandatory = $false)]
+        [ipaddress]$iap_ip_addr = ${DefaultArubaIAPConnection}.iap_ip_addr
     )
 
     Begin {
