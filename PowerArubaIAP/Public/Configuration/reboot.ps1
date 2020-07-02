@@ -45,7 +45,6 @@ function Restart-ArubaIAPReboot {
 
         $uri = "rest/reboot"
 
-
         $reboot_info = @{
             "target" = $target
         }
