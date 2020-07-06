@@ -39,7 +39,6 @@ function Set-ArubaIAPCountryCode {
 
         $uri = "rest/country-code"
 
-
         $country_code_info = @{
             "action"       = "create"
             "country-code" = $country_code
@@ -92,7 +91,6 @@ function Remove-ArubaIAPCountryCode {
     Process {
 
         $uri = "rest/country-code"
-
 
         $country_code_info = @{
             "action" = "delete"

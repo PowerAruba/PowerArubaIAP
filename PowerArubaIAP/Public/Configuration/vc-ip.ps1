@@ -34,7 +34,6 @@ function Set-ArubaIAPVCIP {
 
         $uri = "rest/virtual-controller-ip"
 
-
         $virtual_controller_ip = @{
             "action"       = "create"
             "vc-ip" = $vc_ip.ToString()
