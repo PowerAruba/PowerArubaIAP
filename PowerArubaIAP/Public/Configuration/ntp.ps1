@@ -40,13 +40,12 @@ function Set-ArubaIAPNTP {
         $uri = "rest/ntp-server"
 
         $ntp_server = @{
-            "action"   = "create"
+            "action"        = "create"
             "ntp_server_ip" = $ntp
         }
 
         $body = @{
-            "iap_ip_addr" = $iap_ip_addr.ToString()
-            "ntp-server"   = $ntp_server
+            "ntp-server" = $ntp_server
         }
 
         if ($PSCmdlet.ShouldProcess($iap_ip_addr, 'Set NTP')) {
@@ -98,8 +97,7 @@ function Remove-ArubaIAPNTP {
         }
 
         $body = @{
-            "iap_ip_addr" = $iap_ip_addr.ToString()
-            "ntp-server"   = $ntp_server
+            "ntp-server" = $ntp_server
         }
 
         if ($PSCmdlet.ShouldProcess($iap_ip_addr, 'Remove NTP')) {
