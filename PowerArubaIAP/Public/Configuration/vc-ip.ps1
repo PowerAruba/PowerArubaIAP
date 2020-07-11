@@ -16,7 +16,6 @@ function Set-ArubaIAPVCIP {
         Set-ArubaIAPVCIP 192.0.2.1
 
         Set IP Address 192.0.2.1 to virtual controller
-
     #>
 
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'medium')]
@@ -35,8 +34,8 @@ function Set-ArubaIAPVCIP {
         $uri = "rest/virtual-controller-ip"
 
         $virtual_controller_ip = @{
-            "action"       = "create"
-            "vc-ip" = $vc_ip.ToString()
+            "action" = "create"
+            "vc-ip"  = $vc_ip.ToString()
         }
 
         $body = @{
