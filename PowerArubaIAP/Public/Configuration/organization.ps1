@@ -17,7 +17,6 @@ function Set-ArubaIAPOrganization {
         Set-ArubaIAPOrganization MyOrg
 
         Set Organization MyOrg to IAP
-
     #>
 
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
@@ -88,7 +87,7 @@ function Remove-ArubaIAPOrganization {
 
         $uri = "rest/organization"
 
-        $Organization_info = @{
+        $organization_info = @{
             "action" = "delete"
         }
 
