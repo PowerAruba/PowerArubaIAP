@@ -7,10 +7,11 @@ This is a Powershell module for configure a Aruba Instant AP (IAP)
 <img src="https://raw.githubusercontent.com/PowerAruba/PowerArubaIAP/master/Medias/PowerArubaIAP.png" width="250" height="250" />
 </p>
 
-With this module (version 0.2.0) you can manage:
+With this module (version 0.3.0) you can manage:
 
 - Show commands
 - Action API
+- Configuration API (Partially)
 
 More functionality will be added later.
 
