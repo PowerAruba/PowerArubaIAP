@@ -7,10 +7,11 @@ This is a Powershell module for configure a Aruba Instant AP (IAP)
 <img src="https://raw.githubusercontent.com/PowerAruba/PowerArubaIAP/master/Medias/PowerArubaIAP.png" width="250" height="250" />
 </p>
 
-With this module (version 0.2.0) you can manage:
+With this module (version 0.3.0) you can manage:
 
 - Show commands
 - Action API
+- Configuration API (Partially)
 
 More functionality will be added later.
 
@@ -155,6 +156,87 @@ For each action, you can use -iap_ip_addr for configure an IAP of cluster (using
     Remove-ArubaIAPZone
 ```
 
+### Configuration
+
+#### AP Reboot
+
+```powershell
+# Restart All AP of the cluster
+    Restart-ArubaIAPReboot -target all
+
+# Restart only AP with IP Address 192.0.2.1
+   Restart-ArubaIAPReboot -iap_ip_addr 192.0.2.1 -target single
+```
+
+#### VC Country Code
+
+```powershell
+# Set Virtual Controller Country Code to FR
+    Set-ArubaIAPCountryCode -country_code FR
+
+# Remove Virtual Controller Country code
+   Remove-ArubaIAPCountryCode
+```
+
+#### VC IP Address
+
+```powershell
+# Set Virtual Controller IP(v4) Address to 192.0.2.1
+    Set-ArubaIAPVCIP -vc_ip 192.0.2.1
+```
+
+#### NTP Server
+
+```powershell
+# Set NTP Server to pool.ntp.org
+    Set-ArubaIAPNTP -ntp pool.ntp.org
+
+# Remove NTP Server
+   Remove-ArubaIAPNTP
+```
+
+#### System Location
+
+```powershell
+# Set System Location to PowerAruba
+    Set-ArubaIAPSyslocation -syslocation PowerAruba
+
+# Remove System Location
+   Remove-ArubaIAPSyslocation
+```
+
+#### Organization
+
+```powershell
+# Set Organization to MyOrg
+    Set-ArubaIAPOrganization -syslocation MyOrg
+
+# Remove Organization
+   Remove-Organization
+```
+
+#### Syslog Server
+
+```powershell
+# Set Syslog Server to 192.0.2.1
+    Set-ArubaIAPSyslogServer 192.0.2.1
+
+# Remove Syslog Server
+   Remove-ArubaIAPSyslogServer
+```
+
+#### Syslog Level
+
+```powershell
+# Set Syslog Level to debug (composant syslog)
+    Set-ArubaIAPSyslogLevel -level debug
+
+#Set Syslog Level to error from composant network
+    Set-ArubaIAPSyslogLevel -level error -composant network
+
+# Remove Syslog Level
+   Remove-ArubaIAPSyslogLevel
+```
 
 ### Disconnecting
 
@@ -189,15 +271,29 @@ Connect-ArubaIAP
 Disconnect-ArubaIAP
 Get-ArubaIAPShowCmd
 Invoke-ArubaIAPRestMethod
+Remove-ArubaIAPCountryCode
+Remove-ArubaIAPNTP
+Remove-ArubaIAPOrganization
+Remove-ArubaIAPSyslocation
+Remove-ArubaIAPSyslogLevel
+Remove-ArubaIAPSyslogServer
 Remove-ArubaIAPZone
+Restart-ArubaIAPReboot
 Set-ArubaIAPAntennaGain
 Set-ArubaIAPChannelPower
 Set-ArubaIAPCipherSSL
 Set-ArubaIAPConnection
+Set-ArubaIAPCountryCode
 Set-ArubaIAPHostname
+Set-ArubaIAPNTP
+Set-ArubaIAPOrganization
 Set-ArubaIAPRadioState
 Set-ArubaIAPSwarmMode
+Set-ArubaIAPSyslocation
+Set-ArubaIAPSyslogLevel
+Set-ArubaIAPSyslogServer
 Set-ArubaIAPuntrustedSSL
+Set-ArubaIAPVCIP
 Set-ArubaIAPZone
 Set-UseUnsafeHeaderParsing
 Show-ArubaIAPException
