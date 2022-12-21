@@ -175,7 +175,7 @@ For each action, you can use -iap_ip_addr for configure an IAP of cluster (using
     Set-ArubaIAPCountryCode -country_code FR
 
 # Remove Virtual Controller Country code
-   Remove-ArubaIAPCountryCode
+    Remove-ArubaIAPCountryCode
 ```
 
 #### VC IP Address
@@ -192,7 +192,7 @@ For each action, you can use -iap_ip_addr for configure an IAP of cluster (using
     Set-ArubaIAPNTP -ntp pool.ntp.org
 
 # Remove NTP Server
-   Remove-ArubaIAPNTP
+    Remove-ArubaIAPNTP
 ```
 
 #### System Location
@@ -202,7 +202,7 @@ For each action, you can use -iap_ip_addr for configure an IAP of cluster (using
     Set-ArubaIAPSyslocation -syslocation PowerAruba
 
 # Remove System Location
-   Remove-ArubaIAPSyslocation
+    Remove-ArubaIAPSyslocation
 ```
 
 #### Organization
@@ -212,7 +212,7 @@ For each action, you can use -iap_ip_addr for configure an IAP of cluster (using
     Set-ArubaIAPOrganization -syslocation MyOrg
 
 # Remove Organization
-   Remove-Organization
+    Remove-Organization
 ```
 
 #### Syslog Server
@@ -222,7 +222,7 @@ For each action, you can use -iap_ip_addr for configure an IAP of cluster (using
     Set-ArubaIAPSyslogServer 192.0.2.1
 
 # Remove Syslog Server
-   Remove-ArubaIAPSyslogServer
+    Remove-ArubaIAPSyslogServer
 ```
 
 #### Syslog Level
@@ -235,7 +235,7 @@ For each action, you can use -iap_ip_addr for configure an IAP of cluster (using
     Set-ArubaIAPSyslogLevel -level error -composant network
 
 # Remove Syslog Level
-   Remove-ArubaIAPSyslogLevel
+    Remove-ArubaIAPSyslogLevel
 ```
 
 ### Disconnecting
